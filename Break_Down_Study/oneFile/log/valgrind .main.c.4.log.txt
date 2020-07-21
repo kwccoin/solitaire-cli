@@ -1,0 +1,42 @@
+==139== Memcheck, a memory error detector
+==139== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==139== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==139== Command: ./solitaire
+==139== Parent PID: 1
+==139== 
+==139== Conditional jump or move depends on uninitialised value(s)
+==139==    at 0x10BCC3: attempt_move (main.c:726)
+==139==    by 0x10C0D8: main (main.c:855)
+==139== 
+==139== Conditional jump or move depends on uninitialised value(s)
+==139==    at 0x10BCDA: attempt_move (main.c:727)
+==139==    by 0x10C0D8: main (main.c:855)
+==139== 
+==139== 
+==139== HEAP SUMMARY:
+==139==     in use at exit: 750,857 bytes in 530 blocks
+==139==   total heap usage: 1,096 allocs, 566 frees, 778,797 bytes allocated
+==139== 
+==139== LEAK SUMMARY:
+==139==    definitely lost: 0 bytes in 0 blocks
+==139==    indirectly lost: 0 bytes in 0 blocks
+==139==      possibly lost: 0 bytes in 0 blocks
+==139==    still reachable: 750,857 bytes in 530 blocks
+==139==         suppressed: 0 bytes in 0 blocks
+==139== Rerun with --leak-check=full to see details of leaked memory
+==139== 
+==139== Use --track-origins=yes to see where uninitialised values come from
+==139== ERROR SUMMARY: 4 errors from 2 contexts (suppressed: 0 from 0)
+==139== 
+==139== 2 errors in context 1 of 2:
+==139== Conditional jump or move depends on uninitialised value(s)
+==139==    at 0x10BCDA: attempt_move (main.c:727)
+==139==    by 0x10C0D8: main (main.c:855)
+==139== 
+==139== 
+==139== 2 errors in context 2 of 2:
+==139== Conditional jump or move depends on uninitialised value(s)
+==139==    at 0x10BCC3: attempt_move (main.c:726)
+==139==    by 0x10C0D8: main (main.c:855)
+==139== 
+==139== ERROR SUMMARY: 4 errors from 2 contexts (suppressed: 0 from 0)

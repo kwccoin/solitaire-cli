@@ -1,0 +1,718 @@
+==2010== Memcheck, a memory error detector
+==2010== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2010== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==2010== Command: ./dS
+==2010== Parent PID: 2009
+==2010== 
+--2010-- 
+--2010-- Valgrind options:
+--2010--    --log-file=log/vlogMMd1.txt
+--2010--    -v
+--2010--    -s
+--2010--    --leak-check=full
+--2010--    --show-leak-kinds=all
+--2010-- Contents of /proc/version:
+--2010--   Linux version 4.19.76-linuxkit (root@4abe09437d05) (gcc version 8.3.0 (Alpine 8.3.0)) #1 SMP Tue May 26 11:42:35 UTC 2020
+--2010-- 
+--2010-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--2010-- Page sizes: currently 4096, max supported 4096
+--2010-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--2010-- Reading syms from /src/dS
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--2010--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
+--2010--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--2010--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--2010--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--2010--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--2010--   .. CRC is valid
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--2010--    object doesn't have a symbol table
+--2010--    object doesn't have a dynamic symbol table
+--2010-- Scheduler: using generic scheduler lock implementation.
+--2010-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==2010== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2010-by-???-on-79baec1caca3
+==2010== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2010-by-???-on-79baec1caca3
+==2010== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2010-by-???-on-79baec1caca3
+==2010== 
+==2010== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2010== don't want to do, unless you know exactly what you're doing,
+==2010== or are doing some strange experiment):
+==2010==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=2010 ...command...
+==2010== 
+==2010== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2010==   /path/to/gdb ./dS
+==2010== and then give GDB the following command
+==2010==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=2010
+==2010== --pid is optional if only one valgrind process is running
+==2010== 
+--2010-- REDIR: 0x4022d80 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--2010-- REDIR: 0x4022b50 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--2010--    object doesn't have a symbol table
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--2010--    object doesn't have a symbol table
+==2010== WARNING: new redirection conflicts with existing -- ignoring it
+--2010--     old: 0x04022d80 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--2010--     new: 0x04022d80 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--2010-- REDIR: 0x401f560 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--2010-- REDIR: 0x40232e0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/libncurses.so.6.2
+--2010--    object doesn't have a symbol table
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+--2010--    object doesn't have a symbol table
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--2010--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
+--2010--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--2010--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--2010--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--2010--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--2010--   .. CRC is valid
+--2010-- Reading syms from /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+--2010--   Considering /usr/lib/x86_64-linux-gnu/libdl-2.31.so ..
+--2010--   .. CRC mismatch (computed 4fd191ca wanted df8dd39a)
+--2010--   Considering /lib/x86_64-linux-gnu/libdl-2.31.so ..
+--2010--   .. CRC mismatch (computed 4fd191ca wanted df8dd39a)
+--2010--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libdl-2.31.so ..
+--2010--   .. CRC is valid
+--2010-- REDIR: 0x494a600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494bdd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4966e60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49669a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49492d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a6c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4966960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49497f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49493b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494aad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49680d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49669e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49499a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49497b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4952d20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a9d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4966ab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949c60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a8d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494be10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494aa20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4949830 (libc.so.6:strncat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x49d7750 (libc.so.6:__memcpy_chk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x494a470 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--2010-- REDIR: 0x4a32300 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--2010-- REDIR: 0x4944260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--2010-- REDIR: 0x494a120 (libc.so.6:__GI_strstr) redirected to 0x4843ca0 (__strstr_sse2)
+--2010-- REDIR: 0x4944850 (libc.so.6:free) redirected to 0x483c9d0 (free)
+--2010-- REDIR: 0x4a2d9d0 (libc.so.6:__strcmp_avx2) redirected to 0x483fed0 (strcmp)
+--2010-- REDIR: 0x4a324d0 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--2010-- REDIR: 0x4a31ee0 (libc.so.6:__strchr_avx2) redirected to 0x483ebf0 (index)
+--2010-- REDIR: 0x4a2de10 (libc.so.6:__strncmp_avx2) redirected to 0x483f670 (strncmp)
+--2010-- REDIR: 0x4a354e0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
+--2010-- REDIR: 0x4945c90 (libc.so.6:calloc) redirected to 0x483dce0 (calloc)
+--2010-- REDIR: 0x4a32110 (libc.so.6:__strchrnul_avx2) redirected to 0x4843540 (strchrnul)
+--2010-- REDIR: 0x4a32670 (libc.so.6:__strnlen_avx2) redirected to 0x483eee0 (strnlen)
+--2010-- REDIR: 0x4a33a10 (libc.so.6:__strcpy_avx2) redirected to 0x483f090 (strcpy)
+--2010-- REDIR: 0x4a354d0 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4843b10 (__memcpy_chk)
+--2010-- REDIR: 0x4945000 (libc.so.6:realloc) redirected to 0x483df30 (realloc)
+--2010-- REDIR: 0x4a33da0 (libc.so.6:__strncpy_avx2) redirected to 0x483f230 (strncpy)
+--2010-- REDIR: 0x4a2eac0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48421e0 (bcmp)
+--2010-- REDIR: 0x4965560 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4843c20 (strstr)
+--2010-- REDIR: 0x4a35960 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x48428e0 (memset)
+--2010-- REDIR: 0x4a354c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--2010-- REDIR: 0x4a2e600 (libc.so.6:__rawmemchr_avx2) redirected to 0x4843580 (rawmemchr)
+==2010== 
+==2010== HEAP SUMMARY:
+==2010==     in use at exit: 91,837 bytes in 499 blocks
+==2010==   total heap usage: 1,216 allocs, 717 frees, 122,193 bytes allocated
+==2010== 
+==2010== Searching for pointers to 499 not-freed blocks
+==2010== Checked 209,144 bytes
+==2010== 
+==2010== 4 bytes in 1 blocks are still reachable in loss record 1 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48643D1: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 6 bytes in 1 blocks are still reachable in loss record 2 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x494950E: strdup (strdup.c:42)
+==2010==    by 0x4887AA7: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4887D9B: _nc_first_db (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E1E: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 6 bytes in 1 blocks are still reachable in loss record 3 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x494950E: strdup (strdup.c:42)
+==2010==    by 0x488AE4F: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 16 bytes in 1 blocks are still reachable in loss record 4 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x10A809: make_game_state (zGame.c:21)
+==2010==    by 0x10B157: main (zMain.c:49)
+==2010== 
+==2010== 16 bytes in 1 blocks are still reachable in loss record 5 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AAE: push (zCard.c:169)
+==2010==    by 0x10A977: turn (zGame.c:48)
+==2010==    by 0x10AC04: attempt_move (zGame.c:185)
+==2010==    by 0x10B1BC: main (zMain.c:60)
+==2010== 
+==2010== 18 bytes in 1 blocks are still reachable in loss record 6 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x488868C: _nc_home_terminfo (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4887D85: _nc_first_db (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E1E: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 18 bytes in 1 blocks are still reachable in loss record 7 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x488C542: _nc_tparm_analyze (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488C7CB: tparm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48601B5: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860B8C: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 24 bytes in 1 blocks are still reachable in loss record 8 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4885B22: _nc_add_to_try (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4888745: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4889B3B: _nc_keypad (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x109FB1: init_curses (zDisplay.c:44)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 32 bytes in 2 blocks are still reachable in loss record 9 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AC3: push (zCard.c:171)
+==2010==    by 0x10A977: turn (zGame.c:48)
+==2010==    by 0x10AC04: attempt_move (zGame.c:185)
+==2010==    by 0x10B1BC: main (zMain.c:60)
+==2010== 
+==2010== 46 bytes in 1 blocks are still reachable in loss record 10 of 58
+==2010==    at 0x483DFAF: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48882C7: _nc_doalloc (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891504: _nc_read_termtype (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x489191C: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891D13: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E44: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010== 
+==2010== 46 bytes in 1 blocks are still reachable in loss record 11 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x488618E: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE1B: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 48 bytes in 1 blocks are still reachable in loss record 12 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4887E9B: _nc_first_db (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E1E: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 48 bytes in 3 blocks are still reachable in loss record 13 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AAE: push (zCard.c:169)
+==2010==    by 0x10A9F4: deal (zGame.c:61)
+==2010==    by 0x10AA74: prepare_game (zGame.c:77)
+==2010==    by 0x10B16D: main (zMain.c:50)
+==2010== 
+==2010== 48 bytes in 3 blocks are still reachable in loss record 14 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AAE: push (zCard.c:169)
+==2010==    by 0x10AFC8: move_card (zGame.c:305)
+==2010==    by 0x10AD5F: attempt_move (zGame.c:239)
+==2010==    by 0x10B1BC: main (zMain.c:60)
+==2010== 
+==2010== 64 bytes in 4 blocks are still reachable in loss record 15 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AAE: push (zCard.c:169)
+==2010==    by 0x10AFC8: move_card (zGame.c:305)
+==2010==    by 0x10AE0B: attempt_move (zGame.c:256)
+==2010==    by 0x10B1BC: main (zMain.c:60)
+==2010== 
+==2010== 64 bytes in 4 blocks are still reachable in loss record 16 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AC3: push (zCard.c:171)
+==2010==    by 0x10AAD6: redeal (zGame.c:87)
+==2010==    by 0x10ABF8: attempt_move (zGame.c:183)
+==2010==    by 0x10B1BC: main (zMain.c:60)
+==2010== 
+==2010== 66 bytes in 1 blocks are still reachable in loss record 17 of 58
+==2010==    at 0x483DFAF: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48882C7: _nc_doalloc (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488DC83: tparm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48601B5: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860B8C: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 78 bytes in 1 blocks are still reachable in loss record 18 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48861FF: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE1B: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 87 bytes in 1 blocks are still reachable in loss record 19 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4887E04: _nc_first_db (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E1E: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 96 bytes in 6 blocks are still reachable in loss record 20 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AC3: push (zCard.c:171)
+==2010==    by 0x10A9F4: deal (zGame.c:61)
+==2010==    by 0x10AA74: prepare_game (zGame.c:77)
+==2010==    by 0x10B16D: main (zMain.c:50)
+==2010== 
+==2010== 104 bytes in 1 blocks are still reachable in loss record 21 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4861095: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861278: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4864798: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 104 bytes in 1 blocks are still reachable in loss record 22 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4861095: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861278: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48647BD: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 104 bytes in 1 blocks are still reachable in loss record 23 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4861095: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861278: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x486495B: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 104 bytes in 1 blocks are still reachable in loss record 24 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x10A817: make_game_state (zGame.c:22)
+==2010==    by 0x10B157: main (zMain.c:49)
+==2010== 
+==2010== 128 bytes in 1 blocks are still reachable in loss record 25 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x486439E: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 128 bytes in 8 blocks are still reachable in loss record 26 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AC3: push (zCard.c:171)
+==2010==    by 0x10AFC8: move_card (zGame.c:305)
+==2010==    by 0x10ADBC: attempt_move (zGame.c:247)
+==2010==    by 0x10B1BC: main (zMain.c:60)
+==2010== 
+==2010== 152 bytes in 1 blocks are still reachable in loss record 27 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4855FC8: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x486C1DF: doupdate_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48624E7: wrefresh (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485CE88: wgetnstr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x10B197: main (zMain.c:57)
+==2010== 
+==2010== 156 bytes in 1 blocks are still reachable in loss record 28 of 58
+==2010==    at 0x483DFAF: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48882C7: _nc_doalloc (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891522: _nc_read_termtype (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x489191C: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891D13: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E44: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010== 
+==2010== 208 bytes in 13 blocks are still reachable in loss record 29 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109CD4: make_pile (zCard.c:231)
+==2010==    by 0x10A846: make_game_state (zGame.c:24)
+==2010==    by 0x10B157: main (zMain.c:49)
+==2010== 
+==2010== 224 bytes in 1 blocks are still reachable in loss record 30 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48592C1: start_color_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109FBB: init_curses (zDisplay.c:46)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 256 bytes in 1 blocks are still reachable in loss record 31 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x485916B: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4859287: start_color_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109FBB: init_curses (zDisplay.c:46)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 280 bytes in 1 blocks are still reachable in loss record 32 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x488ADB7: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 304 bytes in 1 blocks are still reachable in loss record 33 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4856AFD: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4855F28: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x486C1DF: doupdate_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48624E7: wrefresh (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485CE88: wgetnstr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x10B197: main (zMain.c:57)
+==2010== 
+==2010== 304 bytes in 1 blocks are still reachable in loss record 34 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4856BFF: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4855F28: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x486C1DF: doupdate_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48624E7: wrefresh (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485CE88: wgetnstr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x10B197: main (zMain.c:57)
+==2010== 
+==2010== 336 bytes in 21 blocks are still reachable in loss record 35 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x109988: make_node (zCard.c:132)
+==2010==    by 0x109AC3: push (zCard.c:171)
+==2010==    by 0x10AFC8: move_card (zGame.c:305)
+==2010==    by 0x10AE62: attempt_move (zGame.c:263)
+==2010==    by 0x10B1BC: main (zMain.c:60)
+==2010== 
+==2010== 496 bytes in 1 blocks are still reachable in loss record 36 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x489178B: _nc_read_termtype (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x489191C: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891D13: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E44: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 496 bytes in 1 blocks are still reachable in loss record 37 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48862D9: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE1B: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 504 bytes in 21 blocks are still reachable in loss record 38 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4885A69: _nc_add_to_try (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488883F: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4889B3B: _nc_keypad (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x109FB1: init_curses (zDisplay.c:44)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 512 bytes in 1 blocks are still reachable in loss record 39 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x486437F: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 608 bytes in 1 blocks are still reachable in loss record 40 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48610B3: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861278: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4864798: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 608 bytes in 1 blocks are still reachable in loss record 41 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48610B3: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861278: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48647BD: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 608 bytes in 1 blocks are still reachable in loss record 42 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48610B3: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861278: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x486495B: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 624 bytes in 52 blocks are still reachable in loss record 43 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x109544: mallocz (zCardGameUtility.c:9)
+==2010==    by 0x1096D6: make_card_ptr (zCard.c:90)
+==2010==    by 0x109D1A: fill_deck (zCard.c:239)
+==2010==    by 0x10AA5C: prepare_game (zGame.c:75)
+==2010==    by 0x10B16D: main (zMain.c:50)
+==2010== 
+==2010== 755 bytes in 1 blocks are still reachable in loss record 44 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x489180B: _nc_read_termtype (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x489191C: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891D13: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E44: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 1,200 bytes in 50 blocks are still reachable in loss record 45 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4885AD5: _nc_add_to_try (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488883F: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4889B3B: _nc_keypad (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x109FB1: init_curses (zDisplay.c:44)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 1,486 bytes in 1 blocks are still reachable in loss record 46 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4890E82: _nc_read_termtype (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x489191C: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891D13: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E44: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 1,624 bytes in 1 blocks are still reachable in loss record 47 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x488B24E: new_prescr (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4860E4B: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 1,680 bytes in 70 blocks are still reachable in loss record 48 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4885A69: _nc_add_to_try (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4888745: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4889B3B: _nc_keypad (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x109FB1: init_curses (zDisplay.c:44)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 1,872 bytes in 1 blocks are still reachable in loss record 49 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4856AC2: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4855F28: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x486C1DF: doupdate_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48624E7: wrefresh (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485CE88: wgetnstr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x10B197: main (zMain.c:57)
+==2010== 
+==2010== 2,088 bytes in 87 blocks are still reachable in loss record 50 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4885AD5: _nc_add_to_try (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4888745: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4889B3B: _nc_keypad (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x109FB1: init_curses (zDisplay.c:44)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 3,792 bytes in 1 blocks are still reachable in loss record 51 of 58
+==2010==    at 0x483DFAF: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48882C7: _nc_doalloc (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891540: _nc_read_termtype (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x489191C: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891D13: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x4891E44: _nc_read_entry2 (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488A9F5: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE04: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010== 
+==2010== 3,792 bytes in 1 blocks are still reachable in loss record 52 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48861AF: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488AE1B: _nc_setupterm (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x48609AC: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 4,105 bytes in 1 blocks are still reachable in loss record 53 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4867A39: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861E04: vwprintw (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4861EEC: printw (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x10A2D1: print_all_curses (zDisplay.c:105)
+==2010==    by 0x10B17C: main (zMain.c:53)
+==2010== 
+==2010== 4,520 bytes in 1 blocks are still reachable in loss record 54 of 58
+==2010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x486449F: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 7,952 bytes in 1 blocks are still reachable in loss record 55 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x4886FA7: ??? (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488779F: _nc_find_type_entry (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x488BEEE: tigetflag_sp (in /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==2010==    by 0x486C655: assume_default_colors_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109FB6: init_curses (zDisplay.c:45)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 16,264 bytes in 38 blocks are still reachable in loss record 56 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48612AC: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4864798: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 16,264 bytes in 38 blocks are still reachable in loss record 57 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48612AC: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48647BD: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== 16,264 bytes in 38 blocks are still reachable in loss record 58 of 58
+==2010==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2010==    by 0x48612AC: newwin_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x486495B: ??? (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x48609EF: newterm_sp (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x4860E5C: newterm (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x485D2CF: initscr (in /usr/lib/x86_64-linux-gnu/libncurses.so.6.2)
+==2010==    by 0x109F9D: init_curses (zDisplay.c:43)
+==2010==    by 0x10B14D: main (zMain.c:46)
+==2010== 
+==2010== LEAK SUMMARY:
+==2010==    definitely lost: 0 bytes in 0 blocks
+==2010==    indirectly lost: 0 bytes in 0 blocks
+==2010==      possibly lost: 0 bytes in 0 blocks
+==2010==    still reachable: 91,837 bytes in 499 blocks
+==2010==         suppressed: 0 bytes in 0 blocks
+==2010== 
+==2010== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

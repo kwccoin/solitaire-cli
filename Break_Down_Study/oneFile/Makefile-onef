@@ -1,0 +1,21 @@
+CC=gcc
+
+# all debug
+
+mac:
+	$(CC) -g -o solitaire -DUNICODE -Wall main.c -lncurses
+debug:
+	$(CC) -g -o solitaire -DUNICODE -Wall main.c -lncursesw -ltinfo
+dascii:
+	$(CC) -g -o solitaire           -Wall main.c -lncursesw -ltinfo
+ascii:
+	$(CC)    -o solitaire           -Wall main.c -lncursesw -ltinfo
+
+v:
+	valgrind --log-file=log/vlogE560ub1.txt -v -s --leak-check=full --show-leak-kinds=all ./solitaire
+
+u:
+	$(CC) -g -o uctest    -DUNICODE -Wall unicode_test.c -lncursesw -ltinfo
+
+clean:
+	rm -Rf solitaire solitaire.d* uctest

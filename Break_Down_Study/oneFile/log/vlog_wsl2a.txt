@@ -1,0 +1,172 @@
+==6577== Memcheck, a memory error detector
+==6577== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6577== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==6577== Command: ./solitaire
+==6577== Parent PID: 6506
+==6577== 
+--6577-- 
+--6577-- Valgrind options:
+--6577--    --log-file=vlog_wsl2a.txt
+--6577--    -v
+--6577-- Contents of /proc/version:
+--6577--   Linux version 4.19.104-microsoft-standard (oe-user@oe-host) (gcc version 8.2.0 (GCC)) #1 SMP Wed Feb 19 06:37:35 UTC 2020
+--6577-- 
+--6577-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--6577-- Page sizes: currently 4096, max supported 4096
+--6577-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--6577-- Reading syms from /home/ngcchk/private_solitaire_cli/master-fixed_linux_docker/solitaire
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--6577--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
+--6577--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--6577--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--6577--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--6577--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--6577--   .. CRC is valid
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--6577--    object doesn't have a symbol table
+--6577--    object doesn't have a dynamic symbol table
+--6577-- Scheduler: using generic scheduler lock implementation.
+--6577-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==6577== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-6577-by-ngcchk-on-???
+==6577== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-6577-by-ngcchk-on-???
+==6577== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-6577-by-ngcchk-on-???
+==6577== 
+==6577== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==6577== don't want to do, unless you know exactly what you're doing,
+==6577== or are doing some strange experiment):
+==6577==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=6577 ...command...
+==6577== 
+==6577== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==6577==   /path/to/gdb ./solitaire
+==6577== and then give GDB the following command
+==6577==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=6577
+==6577== --pid is optional if only one valgrind process is running
+==6577== 
+--6577-- REDIR: 0x4022d80 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--6577-- REDIR: 0x4022b50 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--6577--    object doesn't have a symbol table
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--6577--    object doesn't have a symbol table
+==6577== WARNING: new redirection conflicts with existing -- ignoring it
+--6577--     old: 0x04022d80 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--6577--     new: 0x04022d80 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--6577-- REDIR: 0x401f560 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--6577-- REDIR: 0x40232e0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/libncursesw.so.6.2
+--6577--    object doesn't have a symbol table
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+--6577--    object doesn't have a symbol table
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--6577--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
+--6577--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--6577--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--6577--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--6577--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--6577--   .. CRC is valid
+--6577-- Reading syms from /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+--6577--   Considering /usr/lib/x86_64-linux-gnu/libdl-2.31.so ..
+--6577--   .. CRC mismatch (computed 4fd191ca wanted df8dd39a)
+--6577--   Considering /lib/x86_64-linux-gnu/libdl-2.31.so ..
+--6577--   .. CRC mismatch (computed 4fd191ca wanted df8dd39a)
+--6577--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libdl-2.31.so ..
+--6577--   .. CRC is valid
+--6577-- REDIR: 0x495f600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x4960dd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x497be60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x497b9a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e2d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f6c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x497b960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e7f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e3b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495fad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x497d0d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x497b9e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e9a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e7b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x4967d20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f9d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x497bab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495ec60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f8d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x4960e10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495fa20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495e830 (libc.so.6:strncat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x49ec750 (libc.so.6:__memcpy_chk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x495f470 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--6577-- REDIR: 0x4a47300 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--6577-- REDIR: 0x4959260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--6577-- REDIR: 0x495f120 (libc.so.6:__GI_strstr) redirected to 0x4843ca0 (__strstr_sse2)
+--6577-- REDIR: 0x4959850 (libc.so.6:free) redirected to 0x483c9d0 (free)
+--6577-- REDIR: 0x4a429d0 (libc.so.6:__strcmp_avx2) redirected to 0x483fed0 (strcmp)
+--6577-- REDIR: 0x4a474d0 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--6577-- REDIR: 0x4a42e10 (libc.so.6:__strncmp_avx2) redirected to 0x483f670 (strncmp)
+--6577-- REDIR: 0x4a46ee0 (libc.so.6:__strchr_avx2) redirected to 0x483ebf0 (index)
+--6577-- REDIR: 0x4a43330 (libc.so.6:__memchr_avx2) redirected to 0x4840050 (memchr)
+--6577-- REDIR: 0x4a47110 (libc.so.6:__strchrnul_avx2) redirected to 0x4843540 (strchrnul)
+--6577-- REDIR: 0x4a4a4c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--6577-- REDIR: 0x4a4a4e0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
+--6577-- REDIR: 0x495a000 (libc.so.6:realloc) redirected to 0x483df30 (realloc)
+--6577-- REDIR: 0x4a43eb4 (libc.so.6:__strcasecmp_l_avx) redirected to 0x483fab0 (strcasecmp_l)
+--6577-- REDIR: 0x4a49700 (libc.so.6:__stpcpy_avx2) redirected to 0x4842300 (stpcpy)
+--6577-- REDIR: 0x4a4a960 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x48428e0 (memset)
+--6577-- REDIR: 0x4a47670 (libc.so.6:__strnlen_avx2) redirected to 0x483eee0 (strnlen)
+--6577-- REDIR: 0x495ac90 (libc.so.6:calloc) redirected to 0x483dce0 (calloc)
+--6577-- REDIR: 0x4a48a10 (libc.so.6:__strcpy_avx2) redirected to 0x483f090 (strcpy)
+--6577-- REDIR: 0x4a4a4d0 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4843b10 (__memcpy_chk)
+--6577-- REDIR: 0x4a48da0 (libc.so.6:__strncpy_avx2) redirected to 0x483f230 (strncpy)
+--6577-- REDIR: 0x497a560 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4843c20 (strstr)
+--6577-- REDIR: 0x4a43ac0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48421e0 (bcmp)
+--6577-- REDIR: 0x4a43600 (libc.so.6:__rawmemchr_avx2) redirected to 0x4843580 (rawmemchr)
+==6577== Conditional jump or move depends on uninitialised value(s)
+==6577==    at 0x10BCC3: attempt_move (main.c:726)
+==6577==    by 0x10C0D8: main (main.c:855)
+==6577== 
+==6577== Conditional jump or move depends on uninitialised value(s)
+==6577==    at 0x10BCDA: attempt_move (main.c:727)
+==6577==    by 0x10C0D8: main (main.c:855)
+==6577== 
+==6577== 
+==6577== HEAP SUMMARY:
+==6577==     in use at exit: 460,400 bytes in 485 blocks
+==6577==   total heap usage: 1,487 allocs, 1,002 frees, 513,270 bytes allocated
+==6577== 
+==6577== Searching for pointers to 485 not-freed blocks
+==6577== Checked 815,760 bytes
+==6577== 
+==6577== LEAK SUMMARY:
+==6577==    definitely lost: 0 bytes in 0 blocks
+==6577==    indirectly lost: 0 bytes in 0 blocks
+==6577==      possibly lost: 0 bytes in 0 blocks
+==6577==    still reachable: 460,400 bytes in 485 blocks
+==6577==         suppressed: 0 bytes in 0 blocks
+==6577== Rerun with --leak-check=full to see details of leaked memory
+==6577== 
+==6577== Use --track-origins=yes to see where uninitialised values come from
+==6577== ERROR SUMMARY: 196 errors from 2 contexts (suppressed: 0 from 0)
+==6577== 
+==6577== 98 errors in context 1 of 2:
+==6577== Conditional jump or move depends on uninitialised value(s)
+==6577==    at 0x10BCDA: attempt_move (main.c:727)
+==6577==    by 0x10C0D8: main (main.c:855)
+==6577== 
+==6577== 
+==6577== 98 errors in context 2 of 2:
+==6577== Conditional jump or move depends on uninitialised value(s)
+==6577==    at 0x10BCC3: attempt_move (main.c:726)
+==6577==    by 0x10C0D8: main (main.c:855)
+==6577== 
+==6577== ERROR SUMMARY: 196 errors from 2 contexts (suppressed: 0 from 0)
