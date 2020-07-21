@@ -98,3 +98,7 @@ dS for docker
 Could run under docker using gdb and valgrind; but not Apple (run but ...) linux need power up the old thing ...
 
 Better do useful stuff and stop for awhile.  But playing the game I would.  
+
+==== P.S.
+
+Just stop to have more idea ... like multi user ... AI study etc. and touching for awhile.  A new branch is developed as a base for my future self to work with.  Need to do more serious work for my lovely fallen place.  In the mean time, I guess I understand why again those hacker in the 70s doing text game (and also one on cathode tube) using the Internet then.  It is all addictive.  Have to stop :-)
